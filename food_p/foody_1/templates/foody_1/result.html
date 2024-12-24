@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block headblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+{% endblock %}
+
+{% block fullscreen %}
+<style media="screen">
+.link{
+  text-align: center;
+    display: block;
+  font-size: 30px;
+font-family: 'Poor Story', cursive;
+}
+.under_tag{
+  color:black;
+  font-size: 25px;
+  font-family: 'Poor Story', cursive;
+}
+.head_mansi{
+
+  color:black;
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Poor Story', cursive;
+}
+.head_mansi_1{
+
+  color:black;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Poor Story', cursive;
+  margin: auto;
+}
+</style>
+<h1 class='head_mansi'>订单成功！</h1>
+
+<h2 class='head_mansi_1'>您的订单已成功提交，相关餐厅已收到通知！</h2>
+<br><br>
+<h2 class='head_mansi'>反馈</h2>
+<form method="POST" class="form container">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="提交" class="btn btn-default">
+</form>
+
+{% endblock %}

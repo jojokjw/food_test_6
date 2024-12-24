@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block headblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+{% endblock %}
+
+{% block fullscreen %}
+<h1 class='head_mansi'>苏菜</h1>
+
+<ul>
+  <li class='link'><a href="{% url 'foody_1:seaweed_braised_chicken' %}">海苔碎焖鸡</a></li>
+  <li class='link'><a href="{% url 'foody_1:curry_chicken_rice' %}">咖喱鸡饭</a></li>
+    <li class='link'><a href="{% url 'foody_1:authentic_beef_patty' %}">正点牛肉饼</a></li>
+    <li class='link'><a href="{% url 'foody_1:signature_chicken_leg_rice' %}">招牌鸡腿饭</a></li>
+    <li class='link'><a href="{% url 'foody_1:signature_beggar_chicken' %}">招牌叫花鸡</a></li>
+    <li class='link'><a href="{% url 'foody_1:black_pepper_chicken_steak_rice' %}">黑椒鸡扒饭</a></li>
+    <li class='link'><a href="{% url 'foody_1:curry_chicken_with_chicken_steak' %}">咖喱鸡拼鸡扒</a></li>
+</ul>
+
+<style media="screen">
+.link{
+  text-align: center;
+    display: block;
+  font-size: 30px;
+font-family: 'Poor Story', cursive;
+}
+.under_tag{
+  color:black;
+  font-size: 25px;
+  font-family: 'Poor Story', cursive;
+}
+.head_mansi{
+  color:black;
+  font-size: 100px;
+  text-align: center;
+  font-family: 'Poor Story', cursive;
+}
+</style>
+{% endblock %}

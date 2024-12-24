@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block headblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+{% endblock %}
+
+{% block fullscreen %}
+<h1 class='head_mansi'>开心</h1>
+
+<ul>
+    {%for x in result%}
+    {% if x == 'CholleBature' %}
+    <a href="{% url 'foody_1:cholle' %}">香料馍与豆汤</a><br>
+    {% endif %}
+    {% if x == 'GarlicBread' %}
+    <a href="{% url 'foody_1:garlic' %}">蒜蓉面包</a><br>
+    {% endif %}
+    {% if x == 'Pasta' %}
+    <a href="{% url 'foody_1:pasta' %}">意大利面</a><br>
+    {% endif %}
+    {% if x == 'Dosa' %}
+    <a href="{% url 'foody_1:dosa' %}">薄饼</a><br>
+    {% endif %}
+    {% if x == 'Idli' %}
+    <a href="{% url 'foody_1:idli' %}">印度蒸米饼</a><br>
+    {% endif %}
+    {% if x == 'RajmaChawal' %}
+    <a href="{% url 'foody_1:rajma' %}">印度咖喱红豆饭</a><br>
+    {% endif %}
+    {% if x == 'AalooTikki' %}
+    <a href="{% url 'foody_1:aalootikki' %}">土豆饼</a><br>
+    {% endif %}
+    {% if x == 'VadaPao' %}
+    <a href="{% url 'foody_1:vadapao' %}">炸土豆饼夹面包</a><br>
+    {% endif %}
+    {% if x == 'IceCream' %}
+    <a href="{% url 'foody_1:icecream' %}">冰淇淋</a><br>
+    {% endif %}
+    {% if x == 'Pastries' %}
+    <a href="{% url 'foody_1:pastries' %}">糕点</a><br>
+    {% endif %}
+    {% if x == 'Chocolates' %}
+    <a href="{% url 'foody_1:chocolates' %}">巧克力</a><br>
+    {% endif %}
+    {% if x == 'Ham' %}
+    <a href="{% url 'foody_1:ham' %}">火腿</a><br>
+    {% endif %}
+    {% if x == 'SpringRoll' %}
+    <a href="{% url 'foody_1:springroll' %}">春卷</a><br>
+    {% endif %}
+    {% if x == 'Noodles' %}
+    <a href="{% url 'foody_1:noodles' %}">面条</a><br>
+    {% endif %}
+    {% if x == 'chillyPaneer' %}
+    <a href="{% url 'foody_1:chillyPaneer' %}">辣椒奶酪</a><br>
+    {% endif %}
+    {% if x == 'Tea' %}
+    <a href="{% url 'foody_1:tea' %}">茶</a><br>
+    {% endif %}
+    {% if x == 'SoftDrinks' %}
+    <a href="{% url 'foody_1:softdrinks' %}">软饮料</a><br>
+    {% endif %}
+    {% if x == 'Juices' %}
+    <a href="{% url 'foody_1:juices' %}">果汁</a><br>
+    {% endif %}
+    {%endfor%}
+</ul>
+
+<style media="screen">
+a{
+  text-align: center;
+    display: block;
+  font-size: 30px;
+font-family: 'Poor Story', cursive;
+}
+.under_tag{
+  color:black;
+  font-size: 25px;
+  font-family: 'Poor Story', cursive;
+}
+.head_mansi{
+  color:black;
+  font-size: 100px;
+  text-align: center;
+  font-family: 'Poor Story', cursive;
+}
+</style>
+{% endblock %}

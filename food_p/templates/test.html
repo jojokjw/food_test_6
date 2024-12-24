@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block headblock %}
+  <!-- <link rel="stylesheet" href="{% static 'simplesocial/css/instr.css' %}"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'simplesocial/css/image.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+{% endblock %}
+
+{% block fullscreen %}
+<div class="container-fluid">
+      <h2 align='center' class='confused'>菜系</h2>
+      <div class="row">
+
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:sichuan_cuisine' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSYMas-ewbaO2FOCTUIVNS2M_65fasV70Tbd8m9fDPRcfFO9QBQ" alt="">川菜</div>
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:cantonese_cuisine' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSYMas-ewbaO2FOCTUIVNS2M_65fasV70Tbd8m9fDPRcfFO9QBQ" alt="">粤菜</div>
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:hunan_cuisine' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSYMas-ewbaO2FOCTUIVNS2M_65fasV70Tbd8m9fDPRcfFO9QBQ" alt="">湘菜</div>
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:su_cuisine' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSYMas-ewbaO2FOCTUIVNS2M_65fasV70Tbd8m9fDPRcfFO9QBQ" alt="">苏菜</div>
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:su_cuisine' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSYMas-ewbaO2FOCTUIVNS2M_65fasV70Tbd8m9fDPRcfFO9QBQ" alt="">闽菜</div>
+
+
+
+          <div class="col-lg-4 col-xs-6 thumbnail hello"><a href="{% url 'foody_1:confused' %}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjaJTI9jykkJxkq5p-NCu3o_h2gXHwrrQlp6yCXSMbv5YYRZUx" alt="">无法决定？我们来帮忙！</div>
+
+
+      </div>
+</div>
+
+<style media="screen">
+  .hello{
+    font-size: 20px;
+    text-align: center;
+    display:block;
+    height: 320px;
+    width: 370px;
+    margin: auto;
+  }
+  .container{
+    margin-left: 130px;
+  }
+  .confused{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Poor Story', cursive;
+  }
+</style>
+{% endblock %}
