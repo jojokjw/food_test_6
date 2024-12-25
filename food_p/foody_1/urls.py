@@ -20,10 +20,10 @@ urlpatterns = [
 
     url(r"^confused/happy/$", views.HappyView, name="happy"),
     url(r"^confused/angry/$", views.AngryView, name="angry"),
-    url(r"^confused/dehydrate/$", views.DehydrateView, name="dehydrate"),
     url(r"^confused/depress/$", views.DepressiveView, name="depress"),
     url(r"^confused/excite/$", views.ExciteView, name="excite"),
     url(r"^confused/unwell/$", views.UnwellView, name="unwell"),
+    url(r"^confused/searched/$", views.SearchedView, name="searched"),
 
 
     url(r"^sichuan_cuisine/spicy_wonton/$", views.Sichuan_cuisineSpicy_WontonView, name="spicy_wonton"),

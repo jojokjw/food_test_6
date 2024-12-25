@@ -63,8 +63,9 @@ class Fujian_cuisineView(TemplateView):
 
 
 
-
+# 定义处理广式石磨肠粉页面的视图函数
 def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
+    # 从数据库中获取所有餐馆信息，提取需要的字段
     restaurants=Restaurants.objects.all().values('name','latitude','longitude','rating','cost','count',
     'spicy_wonton','chili_chicken_noodles','sour_cabbage_wonton','cumin_beef_noodles','sour_cabbage_beef_noodles','sichuan_style_spicy_five_grain_fish_noodles','cantonese_stone_ground_rice_noodles',
     'honey_glazed_roast_pork_rice','crispy_roast_duck_rice','beef_ball_noodles','zhanjiang_boiled_chicken_rice','rose_sauce_chicken_rice','salt_baked_chicken_leg_rice','signature_roast_duck_rice',
@@ -74,10 +75,13 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
     'seaweed_braised_chicken','curry_chicken_rice','authentic_beef_patty','signature_chicken_leg_rice','signature_beggar_chicken',
     'black_pepper_chicken_steak_rice','curry_chicken_with_chicken_steak','chaoshan_pork_roll_rice','chaoshan_mixed_rice_noodles','longjiang_pork_trotter_rice',
     'pork_stew_rice','original_pork_offal_noodles','original_seafood_pork_offal_noodles','lemon_flavored_pork_offal_noodles','tomato_flavored_pork_offal_noodles',)
+    # 从数据库中获取所有训练数据，提取需要的字段
     trainingdata=TrainingData.objects.all().values('rating','cost','distance','yesno')
+    # 将餐馆数据转为列表并初始化矩阵，用于存储提取的数据
     temp3=list(restaurants)
     n=len(temp3)
-    restaurantslist=np.zeros((n,49),np.int64)
+    restaurantslist=np.zeros((n,49),np.int64)# 初始化矩阵，49列对应数据字段数量
+    # 遍历每个餐馆信息，将提取的字段值填入矩阵
     for i in range(n):
         restaurantslist[i][0] = temp3[i]['name']
         restaurantslist[i][1] = temp3[i]['latitude']
@@ -85,7 +89,7 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
         restaurantslist[i][3] = temp3[i]['rating']
         restaurantslist[i][4] = temp3[i]['cost']
         restaurantslist[i][5] = temp3[i]['count']
-
+        # 提取菜品相关信息
         restaurantslist[i][6] = temp3[i]['chili_chicken_noodles']
         restaurantslist[i][7] = temp3[i]['spicy_wonton']
         restaurantslist[i][8] = temp3[i]['sour_cabbage_wonton']
@@ -129,13 +133,15 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
         restaurantslist[i][47] = temp3[i]['lemon_flavored_pork_offal_noodles']
         restaurantslist[i][48] = temp3[i]['tomato_flavored_pork_offal_noodles']
 
-
+    # 添加额外列用于存储距离计算值
     temp1=np.zeros((n,1),np.int64)
     restaurantslist=np.append(restaurantslist,temp1,1)
+    # 设定参考点的经纬度，计算每个餐馆到该点的距离
     latitude = 10
     longitude = 10
     for i in range(n):
         restaurantslist[i][49]=math.sqrt(((restaurantslist[i][1]-latitude)*(restaurantslist[i][1]-latitude))+((restaurantslist[i][2]-longitude)*(restaurantslist[i][2]-longitude)))
+    # 处理训练数据，提取并存储为矩阵形式
     temp3=list(trainingdata)
     n=len(temp3)
     trainingdatalist=np.zeros((n,4),np.int64)
@@ -144,6 +150,7 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
         trainingdatalist[i][1]=temp3[i]['cost']
         trainingdatalist[i][2]=temp3[i]['distance']
         trainingdatalist[i][3]=temp3[i]['yesno']
+    # 训练逻辑回归分类器
     X_train = trainingdatalist[:, [0,1,2]]
     y_train = trainingdatalist[:, 3]
     info=np.zeros((1,50),np.int64)
@@ -156,9 +163,11 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
     classifier = LogisticRegression(random_state = 0)
     classifier.fit(X_train, y_train)
     info=info[1:,:]
+    # 对测试数据进行预测，计算概率并附加到数据中
     X_test = info[:,[3,4,49]]
     y_pred = classifier.predict_proba(X_test)
     info=np.append(info,y_pred,1)
+    # 根据预测概率进行排序（降序）
     n = len(info)
     for i in range(n-1):
         for j in range(n-1):
@@ -169,6 +178,7 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
                 info[j]=info[j+1]
                 info[j+1]=temp
     result=[]
+    # 映射餐馆名称到中文描述
     jelly = {
         1: '江西粉面',
         2: '金源香粉面',
@@ -184,6 +194,7 @@ def Cantonese_cuisineCantonese_Stone_Ground_Rice_NoodlesView(request):
     }
     for i in range(n):
         result=np.append(result,jelly[info[i][0]])
+        # 渲染HTML页面并返回结果
     return render(request,'foody_1/Cantonese_cuisineDishes/Cantonese_Stone_Ground_Rice_Noodles.html',{'result':result})
 
 
@@ -5418,110 +5429,55 @@ def Fujian_cuisineTomato_Flavored_Pork_Offal_NoodlesView(request):
 
 
 def HappyView(request):
-    trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
-    info=list(trainingdata)
-    n = len(info)
-    for i in range(n-1):
-        for j in range(n-1):
-            if info[j]['happie'] > info[j+1]['happie'] :
-                temp=np.zeros(7,np.int64)
-                for k in range(7):
-                    temp[k]=info[j][k]
-                info[j]=info[j+1]
-                info[j+1]=temp
-    result=['CholleBature','GarlicBread']
-    m=0
-    if(m<n):
-        m=n
-    for i in range(m):
-        result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/happie.html',{'result':result})
+    trainingdata = MoodData.objects.all().values('Dish', 'happie')
+    info = sorted(trainingdata, key=lambda x: x['happie'])  # 直接按 'happie' 字段排序
+    result = ['Cantonese_Stone_Ground_Rice_Noodles', 'Honey_Glazed_Roast_Pork_Rice']
+    for item in info[:len(info)]:
+        result.append(item['Dish'])  # 将排序后的菜品加入结果
+    return render(request, 'foody_1/moods/happie.html', {'result': result})
 
 
 def AngryView(request):
-    trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
-    info=list(trainingdata)
-    n = len(info)
-    for i in range(n-1):
-        for j in range(n-1):
-            if info[j]['angrie'] > info[j+1]['angrie'] :
-                temp=np.zeros(7,np.int64)
-                for k in range(7):
-                    temp[k]=info[j][k]
-                info[j]=info[j+1]
-                info[j+1]=temp
-    result=['SoftDrinks','Pasta']
-    m=0
-    if(m<n):
-        m=n
-    for i in range(m):
-        result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/angrie.html',{'result':result})
+    trainingdata = MoodData.objects.all().values('Dish', 'angrie')
+    info = list(trainingdata)
+    info = sorted(info, key=lambda x: x['angrie'], reverse=True)
+    result = ['Cantonese_Stone_Ground_Rice_Noodles', 'Cantonese_Stone_Ground_Rice_Noodles']
+    result.extend(item['Dish'] for item in info)
+    return render(request, 'foody_1/moods/angrie.html', {'result': result})
 
 
-def DehydrateView(request):
-    trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
-    info=list(trainingdata)
-    n = len(info)
-    for i in range(n-1):
-        for j in range(n-1):
-            if info[j]['dehydratie'] > info[j+1]['dehydratie'] :
-                temp=np.zeros(7,np.int64)
-                for k in range(7):
-                    temp[k]=info[j][k]
-                info[j]=info[j+1]
-                info[j+1]=temp
-    result=['SoftDrinks','Juices']
-    m=0
-    if(m<n):
-        m=n
-    for i in range(m):
-        result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/dehydrated.html',{'result':result})
+
 
 
 def DepressiveView(request):
-    trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
+    trainingdata=MoodData.objects.all().values('Dish','depressie')
     info=list(trainingdata)
-    n = len(info)
-    for i in range(n-1):
-        for j in range(n-1):
-            if info[j]['depressie'] > info[j+1]['depressie'] :
-                temp=np.zeros(7,np.int64)
-                for k in range(7):
-                    temp[k]=info[j][k]
-                info[j]=info[j+1]
-                info[j+1]=temp
-    result=['IceCream','Chocolates']
-    m=0
-    if(m<n):
-        m=n
-    for i in range(m):
-        result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/depressive.html',{'result':result})
+    info = sorted(info, key=lambda x: x['depressie'], reverse=True)
+    result = ['Cantonese_Stone_Ground_Rice_Noodles', 'Cantonese_Stone_Ground_Rice_Noodles']
+    result.extend(item['Dish'] for item in info)
+    return render(request, 'foody_1/moods/depressive.html', {'result': result})
 
 
 def ExciteView(request):
-    trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
+    trainingdata=MoodData.objects.all().values('Dish','excitie')
     info=list(trainingdata)
-    n = len(info)
-    for i in range(n-1):
-        for j in range(n-1):
-            if info[j]['excitie'] > info[j+1]['excitie'] :
-                temp=np.zeros(7,np.int64)
-                for k in range(7):
-                    temp[k]=info[j][k]
-                info[j]=info[j+1]
-                info[j+1]=temp
-    result=['Pastries','RajmaChawal']
-    m=0
-    if(m<n):
-        m=n
-    for i in range(m):
-        result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/excite.html',{'result':result})
+    info = sorted(info, key=lambda x: x['excitie'], reverse=True)
+    result = ['Cantonese_Stone_Ground_Rice_Noodles', 'Cantonese_Stone_Ground_Rice_Noodles']
+    result.extend(item['Dish'] for item in info)
+    return render(request, 'foody_1/moods/excite.html', {'result': result})
+
 
 def UnwellView(request):
+    trainingdata=MoodData.objects.all().values('Dish','unwellie')
+    info=list(trainingdata)
+    info = sorted(info, key=lambda x: x['unwellie'], reverse=True)
+    result = ['Cantonese_Stone_Ground_Rice_Noodles', 'Cantonese_Stone_Ground_Rice_Noodles']
+    result.extend(item['Dish'] for item in info)
+    return render(request, 'foody_1/moods/unwellie.html', {'result': result})
+
+
+
+def SearchedView(request):
     trainingdata=MoodData.objects.all().values('Dish','happie','angrie','dehydratie','depressie','excitie','unwellie')
     info=list(trainingdata)
     n = len(info)
@@ -5533,14 +5489,13 @@ def UnwellView(request):
                     temp[k]=info[j][k]
                 info[j]=info[j+1]
                 info[j+1]=temp
-    result=['Juices','Tea']
+    result=['Cantonese_Stone_Ground_Rice_Noodles', 'Cantonese_Stone_Ground_Rice_Noodles']
     m=0
     if(m<n):
         m=n
     for i in range(m):
         result=np.append(result,info[i]['Dish'])
-    return render(request,'foody_1/moods/unwellie.html',{'result':result})
-
+    return render(request,'foody_1/moods/searched.html',{'result':result})
 # def index1(request):
 #     trainingdata=MoodData.objects.all().values('dish','depressed','happy','sick','dehydrated','dizziness')
 #     trainingdatalist=list(trainingdata)

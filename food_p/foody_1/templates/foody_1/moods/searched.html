@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+{% block headblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
+{% endblock %}
+
+{% block fullscreen %}
+<h1 class='head_mansi'>身体不适</h1>
+
+<ul>
+    {%for x in result%}
+    {% if x == 'Chili_Chicken_Noodles' %}
+    <a href="{% url 'foody_1:chili_chicken_noodles' %}">辣子鸡面</a><br>
+    {% endif %}
+    {% if x == 'Spicy_Wonton' %}
+    <a href="{% url 'foody_1:spicy_wonton' %}">麻辣抄手</a><br>
+    {% endif %}
+    {% if x == 'Sour_Cabbage_Wonton' %}
+    <a href="{% url 'foody_1:sour_cabbage_wonton' %}">酸菜抄手</a><br>
+    {% endif %}
+    {% if x == 'Cumin_Beef_Noodles' %}
+    <a href="{% url 'foody_1:cumin_beef_noodles' %}">孜然牛肉盖面</a><br>
+    {% endif %}
+    {% if x == 'Sour_Cabbage_Beef_Noodles' %}
+    <a href="{% url 'foody_1:sour_cabbage_beef_noodles' %}">酸菜牛肉面</a><br>
+    {% endif %}
+    {% if x == 'Sichuan_Style_Spicy_Five_Grain_Fish_Noodles' %}
+    <a href="{% url 'foody_1:sichuan_style_spicy_five_grain_fish_noodles' %}">川香麻辣口味五谷鱼粉</a><br>
+
+
+    {% endif %}
+    {% if x == 'Cantonese_Stone_Ground_Rice_Noodles' %}
+    <a href="{% url 'foody_1:cantonese_stone_ground_rice_noodles' %}">广式石磨肠粉</a><br>
+    {% endif %}
+    {% if x == 'Honey_Glazed_Roast_Pork_Rice' %}
+    <a href="{% url 'foody_1:honey_glazed_roast_pork_rice' %}">蜜汁叉烧饭</a><br>
+    {% endif %}
+    {% if x == 'Crispy_Roast_Duck_Rice' %}
+    <a href="{% url 'foody_1:crispy_roast_duck_rice' %}">脆皮烧鸭饭</a><br>
+    {% endif %}
+    {% if x == 'Beef_Ball_Noodles' %}
+    <a href="{% url 'beef_ball_noodles' %}">牛筋丸面</a><br>
+    {% endif %}
+    {% if x == 'Zhanjiang_Boiled_Chicken_Rice' %}
+    <a href="{% url 'foody_1:zhanjiang_boiled_chicken_rice' %}">湛江白切鸡饭</a><br>
+    {% endif %}
+    {% if x == 'Rose_Sauce_Chicken_Rice' %}
+    <a href="{% url 'foody_1:rose_sauce_chicken_rice' %}">玫瑰豉油鸡饭</a><br>
+    {% endif %}
+    {% if x == 'Salt_Baked_Chicken_Leg_Rice' %}
+    <a href="{% url 'foody_1:salt_baked_chicken_leg_rice' %}">盐焗鸡腿饭</a><br>
+    {% endif %}
+    {% if x == 'Signature_Roast_Duck_Rice' %}
+    <a href="{% url 'foody_1:signature_roast_duck_rice' %}">招牌烧鸭饭</a><br>
+    {% endif %}
+    {% if x == 'Kung_Fu_Duck_Leg_Rice' %}
+    <a href="{% url 'foody_1:kung_fu_duck_leg_rice' %}">功夫鸭腿饭</a><br>
+    {% endif %}
+    {% if x == 'Crispy_Duck_Leg_Rice' %}
+    <a href="{% url 'foody_1:crispy_duck_leg_rice' %}">脆皮鸭腿饭</a><br>
+    {% endif %}
+    {% if x == 'Secret_Recipe_Chicken_Steak_Rice' %}
+    <a href="{% url 'foody_1:secret_recipe_chicken_steak_rice' %}">秘制鸡排饭</a><br>
+
+
+    {% endif %}
+    {% if x == 'Spicy_Shrimp' %}
+    <a href="{% url 'foody_1:spicy_shrimp' %}">香辣虾</a><br>
+    {% endif %}
+    {% if x == 'Chili_Chicken' %}
+    <a href="{% url 'foody_1:chili_chicken' %}">辣子鸡</a><br>
+    {% endif %}
+    {% if x == 'Chili_Pepper_Fried_Pork' %}
+    <a href="{% url 'foody_1:chili_pepper_fried_pork' %}">辣椒炒肉</a><br>
+    {% endif %}
+    {% if x == 'Salivating_Chicken' %}
+    <a href="{% url 'foody_1:salivating_chicken' %}">口水鸡</a><br>
+    {% endif %}
+    {% if x == 'Hot_Dry_Noodles' %}
+    <a href="{% url 'foody_1:hot_dry_noodles' %}">热干面</a><br>
+    {% endif %}
+    {% if x == 'Pork_Mince_with_Eggplant_over_Rice' %}
+    <a href="{% url 'foody_1:pork_mince_with_eggplant_over_rice' %}">肉沫茄子盖饭</a><br>
+    {% endif %}
+    {% if x == 'Sausage_Fried_with_Dried_Radish' %}
+    <a href="{% url 'foody_1:sausage_fried_with_dried_radish' %}">腊肠炒萝卜干</a><br>
+    {% endif %}
+    {% if x == 'Garlic_Fragrant_Chicken_Steak' %}
+    <a href="{% url 'foody_1:garlic_fragrant_chicken_steak' %}">蒜香鸡排</a><br>
+    {% endif %}
+    {% if x == 'Scallion_Oil_Mixed_Noodles' %}
+    <a href="{% url 'foody_1:scallion_oil_mixed_noodles' %}">葱油拌面</a><br>
+    {% endif %}
+    {% if x == 'Nanchang_Mixed_Noodles' %}
+    <a href="{% url 'foody_1:nanchang_mixed_noodles' %}">南昌拌面</a><br>
+
+
+    {% endif %}
+    {% if x == 'Seaweed_Braised_Chicken' %}
+    <a href="{% url 'foody_1:seaweed_braised_chicken' %}">海苔碎焖鸡</a><br>
+    {% endif %}
+    {% if x == 'Curry_Chicken_Rice' %}
+    <a href="{% url 'foody_1:curry_chicken_rice' %}">咖喱鸡饭</a><br>
+    {% endif %}
+    {% if x == 'Authentic_Beef_Patty' %}
+    <a href="{% url 'foody_1:authentic_beef_patty' %}">正点牛肉饼</a><br>
+    {% endif %}
+    {% if x == 'Signature_Chicken_Leg_Rice' %}
+    <a href="{% url 'foody_1:signature_chicken_leg_rice' %}">招牌鸡腿饭</a><br>
+    {% endif %}
+    {% if x == 'Signature_Beggar_Chicken' %}
+    <a href="{% url 'foody_1:signature_beggar_chicken' %}">招牌叫花鸡</a><br>
+    {% endif %}
+    {% if x == 'Black_Pepper_Chicken_Steak_Rice' %}
+    <a href="{% url 'foody_1:black_pepper_chicken_steak_rice' %}">黑椒鸡扒饭</a><br>
+    {% endif %}
+    {% if x == 'Curry_Chicken_with_Chicken_Steak' %}
+    <a href="{% url 'foody_1:curry_chicken_with_chicken_steak' %}">咖喱鸡拼鸡扒</a><br>
+    {% endif %}
+    {% if x == 'Chaoshan_Pork_Roll_Rice' %}
+    <a href="{% url 'foody_1:chaoshan_pork_roll_rice' %}">潮汕肉卷饭</a><br>
+    {% endif %}
+    {% if x == 'Chaoshan_Mixed_Rice_Noodles' %}
+    <a href="{% url 'foody_1:chaoshan_mixed_rice_noodles' %}">潮汕拌粿条</a><br>
+    {% endif %}
+    {% if x == 'Longjiang_Pork_Trotter_Rice' %}
+    <a href="{% url 'foody_1:longjiang_pork_trotter_rice' %}">隆江猪脚饭</a><br>
+    {% endif %}
+    {% if x == 'Pork_Stew_Rice' %}
+    <a href="{% url 'foody_1:pork_stew_rice' %}">卤肉饭</a><br>
+    {% endif %}
+    {% if x == 'Original_Pork_Offal_Noodles' %}
+    <a href="{% url 'foody_1:original_pork_offal_noodles' %}">原味猪杂面</a><br>
+    {% endif %}
+    {% if x == 'Original_Seafood_Pork_Offal_Noodles' %}
+    <a href="{% url 'foody_1:original_seafood_pork_offal_noodles' %}">原味海鲜猪杂面</a><br>
+    {% endif %}
+    {% if x == 'Lemon_Flavored_Pork_Offal_Noodles' %}
+    <a href="{% url 'foody_1:lemon_flavored_pork_offal_noodles' %}">柠檬味猪杂面</a><br>
+    {% endif %}
+    {% if x == 'Tomato_Flavored_Pork_Offal_Noodles' %}
+    <a href="{% url 'foody_1:tomato_flavored_pork_offal_noodles' %}">番茄味猪杂面</a><br>
+    {% endif %}
+
+
+    {%endfor%}
+</ul>
+
+<style media="screen">
+a{
+  text-align: center;
+    display: block;
+  font-size: 30px;
+font-family: 'Poor Story', cursive;
+}
+.under_tag{
+  color:black;
+  font-size: 25px;
+  font-family: 'Poor Story', cursive;
+}
+.head_mansi{
+  color:black;
+  font-size: 100px;
+  text-align: center;
+  font-family: 'Poor Story', cursive;
+}
+</style>
+{% endblock %}

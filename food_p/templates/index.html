@@ -9,17 +9,14 @@
 {% block fullscreen %}
 <div class="container-fluid">
   <div class="jumbotron">
-    <h1>根据你的心情推荐食品</h1>
-    <p>这是一个根据你心情为你推荐和送餐的应用，心情至上</p>
+    <h1>菜品推荐</h1>
+    <p>这是一个为你推荐和送餐的应用</p>
   </div>
 </div>
 
 <br>
 <br>
 
-{% if not user.is_authenticated %}
-<h2 align="center" ><a href="{% url 'seller:seller_form' %}" class='sell' ><p class="btn btn-primary btn-lg">想在Moodie Foodie上卖东西吗？</p></a></h2>
-{% endif %}
 
 <style>
 body {

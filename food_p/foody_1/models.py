@@ -64,22 +64,6 @@ class Restaurants(models.Model):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     class Meta:
         verbose_name = '餐厅'
         verbose_name_plural = '餐厅'
@@ -98,7 +82,7 @@ class MoodData(models.Model):
     Dish = models.CharField(max_length=50, verbose_name='菜品')
     happie = models.IntegerField(verbose_name='开心')
     angrie = models.IntegerField(verbose_name='生气')
-    dehydratie = models.IntegerField(verbose_name='脱水')
+    dehydratie = models.IntegerField(verbose_name='口渴')
     depressie = models.IntegerField(verbose_name='抑郁')
     excitie = models.IntegerField(verbose_name='兴奋')
     unwellie = models.IntegerField(verbose_name='不适')

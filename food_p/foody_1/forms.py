@@ -15,7 +15,6 @@ class UserCreateForm(UserCreationForm):
 MOOD_CHOICES = [
     ('Happie', '开心'),
     ('Angrie', '生气'),
-    ('Dehydratie', '脱水'),
     ('Depressie', '抑郁'),
     ('Excitie', '兴奋'),
     ('Unwellie', '不适'),
